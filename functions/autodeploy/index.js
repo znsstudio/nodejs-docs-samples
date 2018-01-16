@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+// [START functions_autodeploy]
 const childProcess = require(`child_process`);
 
 // TODO(developer) configure these settings
@@ -44,3 +45,4 @@ exports.deployToGCF = (req, res) => {
     res.status(500).send(`Function ${FUNCTION_NAME} deployment failed.`);
   }
 };
+// [END functions_autodeploy]
