@@ -12,18 +12,13 @@
     "node": ">=4.3.2"
   },
   "scripts": {
-    "lint": "repo-tools lint",
-    "pretest": "npm run lint",
     "test": "ava -T 20s --verbose test/*.test.js"
   },
   "dependencies": {
     "googleapis": "^24.0.0"
   },
   "devDependencies": {
-    "@google-cloud/nodejs-repo-tools": "2.1.0",
-    "ava": "0.23.0",
-    "proxyquire": "1.8.0",
-    "sinon": "4.0.2"
+    "ava": "0.23.0"
   },
   "cloud-repo-tools": {
     "requiresKeyFile": true,

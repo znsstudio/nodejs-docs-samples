@@ -1,5 +1,5 @@
 /**
- * Copyright 2016, Google, Inc.
+ * Copyright 2017, Google, Inc.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,16 +13,12 @@
  * limitations under the License.
  */
 
-'use strict';
+const test = require(`ava`);
 
-// [START functions_helloworld_get]
-/**
- * HTTP Cloud Function.
- *
- * @param {Object} req Cloud Function request context.
- * @param {Object} res Cloud Function response context.
- */
-exports.helloGET = (req, res) => {
-  res.send('Hello World!');
-};
-// [END functions_helloworld_get]
+test(`can add`, t => {
+  t.is(2 + 2, 4);
+});
+
+test(`can multiply`, t => {
+  t.is(2 * 2, 4);
+});
