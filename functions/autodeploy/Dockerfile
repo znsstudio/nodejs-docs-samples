@@ -12,7 +12,7 @@ RUN export CLOUD_SDK_REPO="cloud-sdk-$(lsb_release -c -s)" && \
 RUN npm install
 
 # TODO(developer)
-# Optional: add your own Docker commands here
+# Optional: add your own custom Docker commands here
 
 # Run your tests
 CMD npm run test
