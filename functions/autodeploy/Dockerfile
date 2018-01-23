@@ -1,5 +1,5 @@
 # Extend a generic Node image that uses GCF's Node version
-FROM 6.12.3-alpine
+FROM node:6.12.3-alpine
 
 # Install gcloud (from https://cloud.google.com/sdk/docs/quickstart-debian-ubuntu)
 RUN export CLOUD_SDK_REPO="cloud-sdk-$(lsb_release -c -s)" && \
