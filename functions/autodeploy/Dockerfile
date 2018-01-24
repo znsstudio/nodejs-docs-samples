@@ -1,29 +1,40 @@
 # Extend a generic Node image that uses GCF's Node version
-FROM node:6.12.3-wheezy
+FROM launcher.gcr.io/google/ubuntu16_04
 
-# Install gcloud (from https://cloud.google.com/sdk/docs/quickstart-debian-ubuntu)
-RUN apt-get update && apt-get install lsb-release
-RUN export CLOUD_SDK_REPO="cloud-sdk-$(lsb_release -c -s)" && \
-    echo "deb http://packages.cloud.google.com/apt $CLOUD_SDK_REPO main" | tee -a /etc/apt/sources.list.d/google-cloud-sdk.list && \
-    curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - && \
-    apt-get update && apt-get install google-cloud-sdk
+# Install gcloud
+RUN apt-get -y update && \
+    apt-get -y install gcc python2.7 python-dev python-setuptools wget ca-certificates \
+       # These are necessary for add-apt-respository
+       software-properties-common python-software-properties && \
+
+    # Install Git >2.0.1
+    add-apt-repository ppa:git-core/ppa && \
+    apt-get -y update && \
+    apt-get -y install git && \
+
+    # Setup Google Cloud SDK (latest)
+    mkdir -p /builder && \
+    wget -qO- https://dl.google.com/dl/cloudsdk/release/google-cloud-sdk.tar.gz | tar zxv -C /builder && \
+    CLOUDSDK_PYTHON="python2.7" /builder/google-cloud-sdk/install.sh --usage-reporting=false \
+        --bash-completion=false \
+        --disable-installation-options
+ENV PATH=/builder/google-cloud-sdk/bin/:$PATH
 
 # Set variables required by gcloud
 ENV CLOUDSDK_CORE_PROJECT nodejs-docs-samples
-RUN gcloud config set account 203278707824@cloudbuild.gserviceaccount.com
 
 # Copy user files
 ADD . /gcf/
 WORKDIR /gcf
 
 # Install user dependencies
-RUN npm install
+# RUN npm install
 
 # TODO(developer)
 # Optional: add your own custom Docker commands here
 
 # Run your tests
-RUN npm run test
+# RUN npm run test
 
 # Deploy to Cloud Functions, if your tests pass
 RUN gcloud beta functions deploy helloGET --trigger-http
