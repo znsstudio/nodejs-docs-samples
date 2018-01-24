@@ -1,3 +1,5 @@
+# Give the Container Builder service account "Cloud Functions Developer" access
+
 steps:
 - name: 'gcr.io/cloud-builders/npm'
   args: ['install']
@@ -6,5 +8,5 @@ steps:
   args: ['test']
   dir: 'functions/autodeploy'
 - name: 'gcr.io/cloud-builders/gcloud'
-  args: ['beta', 'functions', 'deploy', 'helloGCS', '--trigger-http']
+  args: ['beta', 'functions', 'deploy', 'helloGET', '--trigger-http']
   dir: 'functions/autodeploy'
