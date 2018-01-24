@@ -5,8 +5,8 @@ FROM gcr.io/google-appengine/nodejs
 ADD . /gcf/
 WORKDIR /gcf
 
-# Install user dependencies
-RUN npm install
+# Install dependencies
+RUN npm install --dev
 
 # TODO(developer)
 # Optional: add your own custom Docker commands here
