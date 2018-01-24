@@ -1,7 +1,10 @@
 steps:
 - name: 'gcr.io/cloud-builders/npm'
   args: ['install']
+  dir: 'functions/autodeploy'
 - name: 'gcr.io/cloud-builders/npm'
   args: ['test']
+  dir: 'functions/autodeploy'
 - name: 'gcr.io/cloud-builders/gcloud'
   args: ['beta', 'functions', 'deploy', 'helloGCS', '--trigger-http']
+  dir: 'functions/autodeploy'
