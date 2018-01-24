@@ -22,4 +22,4 @@ RUN npm install
 RUN npm run test
 
 # Deploy to Cloud Functions, if your tests pass
-RUN gcloud beta functions deploy [YOUR_FUNCTION_NAME] [YOUR_FUNCTION_TRIGGER]
+RUN gcloud beta functions deploy helloGET --trigger-http
