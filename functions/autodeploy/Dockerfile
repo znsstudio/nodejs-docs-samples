@@ -20,8 +20,7 @@ RUN apt-get -y update && \
         --disable-installation-options && \
 
     # Install additional components
-    /builder/google-cloud-sdk/bin/gcloud -q components install \
-        beta &&
+    /builder/google-cloud-sdk/bin/gcloud -q components install beta && \
     /builder/google-cloud-sdk/bin/gcloud -q components update
 
 ENV PATH=/builder/google-cloud-sdk/bin/:$PATH
