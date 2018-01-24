@@ -8,6 +8,10 @@ RUN export CLOUD_SDK_REPO="cloud-sdk-$(lsb_release -c -s)" && \
     curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - && \
     apt-get update && apt-get install google-cloud-sdk
 
+# Copy user files
+ADD . /gcf/
+WORKDIR /gcf
+
 # Install user dependencies
 RUN npm install
 
