@@ -21,13 +21,10 @@ RUN apt-get -y update && \
 
     # Install additional components
     /builder/google-cloud-sdk/bin/gcloud -q components install \
-        alpha beta kubectl && \
+        beta &&
     /builder/google-cloud-sdk/bin/gcloud -q components update
 
 ENV PATH=/builder/google-cloud-sdk/bin/:$PATH
-
-# Set variables required by gcloud
-ENV CLOUDSDK_CORE_PROJECT nodejs-docs-samples
 
 # Copy user files
 ADD . /gcf/
