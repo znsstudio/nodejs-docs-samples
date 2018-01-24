@@ -10,7 +10,7 @@ RUN export CLOUD_SDK_REPO="cloud-sdk-$(lsb_release -c -s)" && \
 
 # Set variables required by gcloud
 ENV CLOUDSDK_CORE_PROJECT nodejs-docs-samples
-RUN gcloud config set account $CLOUDSDK_CORE_PROJECT@cloudbuild.gserviceaccount.com
+RUN gcloud config set account 203278707824@cloudbuild.gserviceaccount.com
 
 # Copy user files
 ADD . /gcf/
