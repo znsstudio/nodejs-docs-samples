@@ -18,6 +18,12 @@ RUN apt-get -y update && \
     CLOUDSDK_PYTHON="python2.7" /builder/google-cloud-sdk/install.sh --usage-reporting=false \
         --bash-completion=false \
         --disable-installation-options
+
+    # Install additional components
+    /builder/google-cloud-sdk/bin/gcloud -q components install \
+        alpha beta kubectl && \
+    /builder/google-cloud-sdk/bin/gcloud -q components update
+
 ENV PATH=/builder/google-cloud-sdk/bin/:$PATH
 
 # Set variables required by gcloud
