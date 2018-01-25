@@ -66,3 +66,9 @@ test(`can access GCP`, async (t) => {
       t.fail();
     });
 });
+
+const childProcess = require(`child_process`);
+test(`can access gcloud`, (t) => {
+  console.log(`gcloud auth list:`, childProcess.execSync(`gcloud auth list`).toString());
+  t.pass();
+})

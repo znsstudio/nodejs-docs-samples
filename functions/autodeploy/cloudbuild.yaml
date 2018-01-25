@@ -4,6 +4,9 @@ steps:
 - name: 'gcr.io/cloud-builders/npm'
   args: ['install']
   dir: 'functions/autodeploy'
+- name: 'gcr.io/cloud-builders/gcloud'
+  args: ['auth', 'list']
+  dir: 'functions/autodeploy'
 - name: 'gcr.io/cloud-builders/npm'
   args: ['test']
   dir: 'functions/autodeploy'
