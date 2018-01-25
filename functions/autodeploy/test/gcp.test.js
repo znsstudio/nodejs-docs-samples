@@ -62,7 +62,8 @@ test(`can access GCP`, async (t) => {
       t.pass();
     })
     .catch(err => {
-      console.error(`Error in inspectString: ${err.message || err}`);
+      console.error(`Error in inspectString: ${err}`);
+      console.error(JSON.stringify(err, null, 4));
       t.fail();
     });
 });
