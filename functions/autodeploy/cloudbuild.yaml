@@ -6,9 +6,7 @@ steps:
   dir: 'functions/autodeploy'
 - name: 'gcr.io/cloud-builders/gcloud'
   args: ['kms', 'decrypt', '--location=global', '--keyring=delete-after-jan-2018', '--key=gcf-ci-cd', '--plaintext-file=key.json', '--ciphertext-file=key.json.enc']
-  env:
-    - 'GCLOUD_PROJECT=nodejs-docs-samples'
-    - 'GOOGLE_APPLICATION_CREDENTIALS=/workspace/functions/autodeploy/key.json'
+  env: ['GCLOUD_PROJECT=nodejs-docs-samples', 'GOOGLE_APPLICATION_CREDENTIALS=/workspace/functions/autodeploy/key.json']
   dir: 'functions/autodeploy'
 - name: 'gcr.io/cloud-builders/npm'
   args: ['test']
