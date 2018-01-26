@@ -46,10 +46,10 @@ test(`can access GCP`, async (t) => {
 
 // REQUEST TESTS
 const request = require(`request`);
-test.cb(`http://metadata.google.internal/computeMetadata/v1beta1/instance/service-accounts/default/token`, t => {
-  request(`x`, (e, r, b) => {
-    console.log(`Error`, e);
-    console.log(`Body:`, b);
+test.cb(`request 1`, t => {
+  request(`http://metadata.google.internal/computeMetadata/v1beta1/instance/service-accounts/default/token`, (e, r, b) => {
+    console.log(`R1 Error`, e);
+    console.log(`R1 Body:`, b);
     t.pass();
     t.end();
   });
@@ -62,8 +62,8 @@ test.cb(`request 2`, t => {
       'Metadata-Flavor': 'Google'
     }
   }, (e, r, b) => {
-    console.log(`Error`, e);
-    console.log(`Body:`, b);
+    console.log(`R2 Error`, e);
+    console.log(`R2 Body:`, b);
     t.pass();
     t.end();
   });
