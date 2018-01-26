@@ -42,13 +42,13 @@ test.skip(`can access GCP`, async (t) => {
 // [END storage_quickstart]
 });
 
-
+const request = require(`request`);
 test.cb(`can access metadata server`, t => {
-  request(`http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/?recursive=true` (e,r,b) => {
+  request(`http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/?recursive=true`, (e, r, b) => {
     console.log(`Error:`, e);
     console.log(`Response:`, r);
     console.log(`Body`, b);
     t.pass();
     t.end();
-  })
-}
+  });
+});
