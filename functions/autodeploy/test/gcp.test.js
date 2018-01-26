@@ -22,13 +22,15 @@ const test = require(`ava`);
 const Storage = require('@google-cloud/storage');
 
 // Creates a client
-const storage = new Storage();
+const storage = new Storage({
+  keyFilename: process.env.GOOGLE_APPLICATION_CREDENTIALS
+});
 
 // The name for the new bucket
 const bucketName = 'please-delete-this';
 
 // Creates the new bucket
-test.skip(`can access GCP`, async (t) => {
+test(`can access GCP`, async (t) => {
   await storage
     .createBucket(bucketName)
     .then(() => {
@@ -40,15 +42,4 @@ test.skip(`can access GCP`, async (t) => {
       t.fail();
     });
 // [END storage_quickstart]
-});
-
-const request = require(`request`);
-test.cb(`can access metadata server`, t => {
-  request(`http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/?recursive=true`, (e, r, b) => {
-    console.log(`Error:`, e);
-    console.log(`Response:`, r);
-    console.log(`Body`, b);
-    t.pass();
-    t.end();
-  });
 });
