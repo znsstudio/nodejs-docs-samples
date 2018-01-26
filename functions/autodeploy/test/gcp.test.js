@@ -23,7 +23,7 @@ const Storage = require('@google-cloud/storage');
 
 // Creates a client
 const storage = new Storage({
-  keyFilename: process.env.GOOGLE_APPLICATION_CREDENTIALS
+  keyFile: process.env.GOOGLE_APPLICATION_CREDENTIALS
 });
 
 // The name for the new bucket
@@ -31,7 +31,7 @@ const bucketName = 'please-delete-this';
 
 // Creates the new bucket
 test(`can access GCP`, async (t) => {
-  await storage
+  storage
     .createBucket(bucketName)
     .then(() => {
       console.log(`Bucket ${bucketName} created.`);
@@ -42,4 +42,29 @@ test(`can access GCP`, async (t) => {
       t.fail();
     });
 // [END storage_quickstart]
+});
+
+// REQUEST TESTS
+const request = require(`request`);
+test.cb(`http://metadata.google.internal/computeMetadata/v1beta1/instance/service-accounts/default/token`, t => {
+  request(`x`, (e, r, b) => {
+    console.log(`Error`, e);
+    console.log(`Body:`, b);
+    t.pass();
+    t.end();
+  });
+});
+
+test.cb(`request 2`, t => {
+  request({
+    url: `http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/?recursive=true`,
+    headers: {
+      'Metadata-Flavor': 'Google'
+    }
+  }, (e, r, b) => {
+    console.log(`Error`, e);
+    console.log(`Body:`, b);
+    t.pass();
+    t.end();
+  });
 });
