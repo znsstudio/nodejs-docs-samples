@@ -19,7 +19,10 @@ const test = require(`ava`);
 const DLP = require('@google-cloud/dlp');
 
 // Instantiates a client
-const dlp = new DLP.DlpServiceClient();
+const dlp = new DLP.DlpServiceClient({
+  projectId: process.env.GCLOUD_PROJECT,
+  keyFilename: process.env.GOOGLE_APPLICATION_CREDENTIALS
+});
 
 // The string to inspect
 const string = 'Robert Frost';
@@ -67,9 +70,3 @@ test(`can access GCP`, async (t) => {
       t.fail();
     });
 });
-
-const childProcess = require(`child_process`);
-test(`can access gcloud`, (t) => {
-  console.log(`gcloud auth list:`, childProcess.execSync(`gcloud auth list`).toString());
-  t.pass();
-})
