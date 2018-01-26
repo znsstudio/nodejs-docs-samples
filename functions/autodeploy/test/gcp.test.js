@@ -13,60 +13,28 @@
  * limitations under the License.
  */
 
-const test = require(`ava`);
+'use strict';
 
-// Imports the Google Cloud Data Loss Prevention library
-const DLP = require('@google-cloud/dlp');
+// [START storage_quickstart]
+// Imports the Google Cloud client library
+const Storage = require('@google-cloud/storage');
 
-// Instantiates a client
-const dlp = new DLP.DlpServiceClient({
+// Your Google Cloud Platform project ID
+const projectId = 'YOUR_PROJECT_ID';
+
+// Creates a client
+const storage = new Storage({
   projectId: process.env.GCLOUD_PROJECT,
-  keyFilename: process.env.GOOGLE_APPLICATION_CREDENTIALS
+  keyFile: process.env.GOOGLE_APPLICATION_CREDENTIALS
 });
 
-// The string to inspect
-const string = 'Robert Frost';
+// The name for the new bucket
+const bucketName = 'please-delete-this';
 
-// The minimum likelihood required before returning a match
-const minLikelihood = 'LIKELIHOOD_UNSPECIFIED';
-
-// The maximum number of findings to report (0 = server maximum)
-const maxFindings = 0;
-
-// The infoTypes of information to match
-const infoTypes = [{name: 'US_MALE_NAME'}, {name: 'US_FEMALE_NAME'}];
-
-// Whether to include the matching string
-const includeQuote = true;
-
-// Construct items to inspect
-const items = [{type: 'text/plain', value: string}];
-
-test(`can access GCP`, async (t) => {
-
-  // Construct request
-  const request = {
-    inspectConfig: {
-      infoTypes: infoTypes,
-      minLikelihood: minLikelihood,
-      maxFindings: maxFindings,
-      includeQuote: includeQuote,
-    },
-    items: items,
-  };
-
-  // Run request
-  await dlp
-    .inspectContent(request)
-    .then(response => {
-      const findings = response[0].results[0].findings;
-      console.log(`Findings:`, findings);
-      t.is(findings[0].quote, 'Robert')
-      t.pass();
-    })
-    .catch(err => {
-      console.error(`Error in inspectString: ${err}`);
-      console.error(JSON.stringify(err, null, 4));
-      t.fail();
-    });
-});
+// Creates the new bucket
+storage
+  .createBucket(bucketName)
+  .then(() => {
+    console.log(`Bucket ${bucketName} created.`);
+  });
+// [END storage_quickstart]
