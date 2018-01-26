@@ -15,12 +15,11 @@
 
 'use strict';
 
+const test = require(`ava`);
+
 // [START storage_quickstart]
 // Imports the Google Cloud client library
 const Storage = require('@google-cloud/storage');
-
-// Your Google Cloud Platform project ID
-const projectId = 'YOUR_PROJECT_ID';
 
 // Creates a client
 const storage = new Storage({
@@ -32,9 +31,16 @@ const storage = new Storage({
 const bucketName = 'please-delete-this';
 
 // Creates the new bucket
-storage
-  .createBucket(bucketName)
-  .then(() => {
-    console.log(`Bucket ${bucketName} created.`);
-  });
+test(`can access GCP`, async (t) => {
+  storage
+    .createBucket(bucketName)
+    .then(() => {
+      console.log(`Bucket ${bucketName} created.`);
+      t.pass();
+    })
+    .catch(err => {
+      console.log(err);
+      t.fail();
+    });
 // [END storage_quickstart]
+});
