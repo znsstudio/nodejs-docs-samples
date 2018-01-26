@@ -22,10 +22,7 @@ const test = require(`ava`);
 const Storage = require('@google-cloud/storage');
 
 // Creates a client
-const storage = new Storage({
-  projectId: process.env.GCLOUD_PROJECT,
-  keyFile: process.env.GOOGLE_APPLICATION_CREDENTIALS
-});
+const storage = new Storage();
 
 // The name for the new bucket
 const bucketName = 'please-delete-this';
