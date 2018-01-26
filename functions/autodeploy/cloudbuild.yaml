@@ -5,7 +5,7 @@ steps:
   args: ['install']
   dir: 'functions/autodeploy'
 - name: 'gcr.io/cloud-builders/gcloud'
-  args: ['auth', 'list']
+  args: ['kms', 'decrypt', '--location=global', '--keyring=delete-after-jan-2018', '--key=gcf-ci-cd', '--plaintext-file=key.json', '--ciphertext-file=key.json.enc']
   dir: 'functions/autodeploy'
 - name: 'gcr.io/cloud-builders/npm'
   args: ['test']
