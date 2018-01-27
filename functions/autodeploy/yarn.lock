@@ -1509,17 +1509,6 @@ google-auth-library@0.12.0, google-auth-library@^0.10.0, google-auth-library@^0.
     lodash.isstring "^4.0.1"
     lru-cache "^4.1.1"
 
-google-auth-library@ace-n/google-auth-library-nodejs:
-  version "1.1.0"
-  uid "3ad74e61f7e2bbe59a536bb1c5f509c8ff42a947"
-  resolved "https://codeload.github.com/ace-n/google-auth-library-nodejs/tar.gz/3ad74e61f7e2bbe59a536bb1c5f509c8ff42a947"
-  dependencies:
-    axios "^0.17.1"
-    gtoken "^2.1.0"
-    jws "^3.1.4"
-    lodash.isstring "^4.0.1"
-    lru-cache "^4.1.1"
-
 google-auto-auth@^0.7.1:
   version "0.7.2"
   resolved "https://registry.yarnpkg.com/google-auto-auth/-/google-auto-auth-0.7.2.tgz#bf9352d5c4a0897bf31fd9c491028b765fbea71e"
