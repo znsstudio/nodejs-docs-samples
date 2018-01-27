@@ -1,7 +1,7 @@
 # Give the Container Builder service account "Cloud Functions Developer" access
 
 steps:
-- name: 'gcr.io/cloud-builders/npm'
+- name: 'gcr.io/cloud-builders/yarn'
   args: ['install']
   dir: 'functions/autodeploy'
 - name: 'gcr.io/cloud-builders/gcloud'
