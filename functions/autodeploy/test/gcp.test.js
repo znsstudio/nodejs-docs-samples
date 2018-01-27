@@ -31,7 +31,7 @@ const bucketName = 'please-delete-this';
 
 // Creates the new bucket
 test(`can access GCP`, async (t) => {
-  storage
+  await storage
     .createBucket(bucketName)
     .then(() => {
       console.log(`Bucket ${bucketName} created.`);
