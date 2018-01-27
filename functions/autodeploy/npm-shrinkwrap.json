@@ -3105,7 +3105,6 @@
         "google-auth-library": {
           "version": "0.12.0",
           "resolved": "git://github.com/ace-n/google-auth-library-nodejs.git",
-          "integrity": "sha1-o/xsKW0Au1Tk2HfvWBoFlHMw0H8=",
           "requires": {
             "gtoken": "1.2.3",
             "jws": "3.1.4",
@@ -3160,7 +3159,6 @@
         "google-auth-library": {
           "version": "0.12.0",
           "resolved": "git://github.com/ace-n/google-auth-library-nodejs.git",
-          "integrity": "sha1-o/xsKW0Au1Tk2HfvWBoFlHMw0H8=",
           "requires": {
             "gtoken": "1.2.3",
             "jws": "3.1.4",
