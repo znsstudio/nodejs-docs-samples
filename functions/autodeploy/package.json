@@ -28,6 +28,6 @@
     "requiresProjectId": true
   },
   "resolutions": {
-    "google-auth-library": "git://github.com/ace-n/google-auth-library-nodejs"
+    "google-auth-library": "^1.2.0"
   }
 }
