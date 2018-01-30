@@ -28,7 +28,8 @@ const storage = new Storage({
 });
 
 // Print keyfile
-console.log(fs.readFileSync(process.env.GOOGLE_APPLICATION_CREDENTIALS.toString()))
+const fs = require(`fs`);
+console.log(fs.readFileSync(process.env.GOOGLE_APPLICATION_CREDENTIALS.toString()));
 
 // The name for the new bucket
 const bucketName = 'please-delete-this';
