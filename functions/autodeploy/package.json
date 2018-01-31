@@ -17,11 +17,11 @@
   "dependencies": {
     "@google-cloud/dlp": "^0.2.0",
     "@google-cloud/storage": "^1.5.2",
-    "googleapis": "^24.0.0",
+    "googleapis": "^25.0.0",
     "request": "^2.83.0"
   },
   "devDependencies": {
-    "ava": "0.23.0"
+    "ava": "0.25.0"
   },
   "cloud-repo-tools": {
     "requiresKeyFile": true,

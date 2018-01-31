@@ -20,7 +20,7 @@ const test = require(`ava`);
 // [START storage_quickstart]
 // Imports the Google Cloud client library
 const Storage = require('@google-cloud/storage');
-const GOOGLE_APPLICATION_CREDENTIALS = '/workspace/functions/autodeploy/key.json';
+const GOOGLE_APPLICATION_CREDENTIALS = process.env.GOOGLE_APPLICATION_CREDENTIALS; //'/workspace/functions/autodeploy/key.json';
 
 // Creates a client
 const storage = new Storage({
@@ -30,13 +30,13 @@ const storage = new Storage({
 
 // Print keyfile
 const fs = require(`fs`);
-console.log(fs.readFileSync(GOOGLE_APPLICATION_CREDENTIALS).toString());
+//console.log(fs.readFileSync(GOOGLE_APPLICATION_CREDENTIALS).toString());
 
 // The name for the new bucket
 const bucketName = 'please-delete-this';
 
 // Creates the new bucket
-test(`can access GCP`, async (t) => {
+test.only(`can access GCP`, async (t) => {
   await storage
     .createBucket(bucketName)
     .then(() => {
@@ -44,7 +44,7 @@ test(`can access GCP`, async (t) => {
       t.pass();
     })
     .catch(err => {
-      console.log(err);
+      console.log(`GCP ERR`, err);
       t.fail();
     });
 // [END storage_quickstart]
