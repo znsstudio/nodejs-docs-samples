@@ -20,13 +20,9 @@ const test = require(`ava`);
 // [START storage_quickstart]
 // Imports the Google Cloud client library
 const Storage = require('@google-cloud/storage');
-const GOOGLE_APPLICATION_CREDENTIALS = process.env.GOOGLE_APPLICATION_CREDENTIALS; //'/workspace/functions/autodeploy/key.json';
 
 // Creates a client
-const storage = new Storage({
-  projectId: `nodejs-docs-samples`,
-  keyFile: GOOGLE_APPLICATION_CREDENTIALS
-});
+const storage = new Storage();
 
 // Print keyfile
 const fs = require(`fs`);
