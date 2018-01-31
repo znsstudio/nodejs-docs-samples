@@ -20,16 +20,17 @@ const test = require(`ava`);
 // [START storage_quickstart]
 // Imports the Google Cloud client library
 const Storage = require('@google-cloud/storage');
+const GOOGLE_APPLICATION_CREDENTIALS = '/workspace/functions/autodeploy/key.json';
 
 // Creates a client
 const storage = new Storage({
   projectId: `nodejs-docs-samples`,
-  keyFile: process.env.GOOGLE_APPLICATION_CREDENTIALS
+  keyFile: GOOGLE_APPLICATION_CREDENTIALS
 });
 
 // Print keyfile
 const fs = require(`fs`);
-console.log(fs.readFileSync(process.env.GOOGLE_APPLICATION_CREDENTIALS).toString());
+console.log(fs.readFileSync(GOOGLE_APPLICATION_CREDENTIALS).toString());
 
 // The name for the new bucket
 const bucketName = 'please-delete-this';
