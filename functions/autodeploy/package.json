@@ -26,5 +26,8 @@
   "cloud-repo-tools": {
     "requiresKeyFile": true,
     "requiresProjectId": true
+  },
+    "resolutions": {
+    "google-auth-library": "^1.2.0"
   }
 }
