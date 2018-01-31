@@ -19,28 +19,66 @@ const test = require(`ava`);
 
 // [START storage_quickstart]
 // Imports the Google Cloud client library
-const Storage = require('@google-cloud/storage');
+const DLP = require('@google-cloud/dlp');
 
 // Creates a client
-const storage = new Storage();
-
-// Print keyfile
-const fs = require(`fs`);
-//console.log(fs.readFileSync(GOOGLE_APPLICATION_CREDENTIALS).toString());
-
-// The name for the new bucket
-const bucketName = 'please-delete-this';
+const dlp = new DLP.DlpServiceClient();
 
 // Creates the new bucket
 test.only(`can access GCP`, async (t) => {
-  await storage
-    .createBucket(bucketName)
-    .then(() => {
-      console.log(`Bucket ${bucketName} created.`);
-      t.pass();
+
+  // The string to inspect
+  const string = 'Robert Frost';
+
+  // The minimum likelihood required before returning a match
+  const minLikelihood = 'LIKELIHOOD_UNSPECIFIED';
+
+  // The maximum number of findings to report (0 = server maximum)
+  const maxFindings = 0;
+
+  // The infoTypes of information to match
+  const infoTypes = [{name: 'US_MALE_NAME'}, {name: 'US_FEMALE_NAME'}];
+
+  // Whether to include the matching string
+  const includeQuote = true;
+
+  // Construct items to inspect
+  const items = [{type: 'text/plain', value: string}];
+
+  // Construct request
+  const request = {
+    inspectConfig: {
+      infoTypes: infoTypes,
+      minLikelihood: minLikelihood,
+      maxFindings: maxFindings,
+      includeQuote: includeQuote,
+    },
+    items: items,
+  };
+
+
+  await dlp
+    .inspectContent(request)
+    .then(response => {
+      const findings = response[0].results[0].findings;
+      if (findings.length > 0) {
+        console.log(`Findings:`);
+        findings.forEach(finding => {
+          if (includeQuote) {
+            console.log(`\tQuote: ${finding.quote}`);
+          }
+          console.log(`\tInfo type: ${finding.infoType.name}`);
+          console.log(`\tLikelihood: ${finding.likelihood}`);
+
+          t.pass();
+        });
+      } else {
+        console.log(`No findings.`);
+        t.fail();
+      }
     })
     .catch(err => {
-      console.log(`GCP ERR`, err);
+      console.error(`Error in inspectString: ${err.message || err}`);
       t.fail();
     });
 // [END storage_quickstart]
