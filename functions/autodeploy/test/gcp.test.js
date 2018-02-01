@@ -19,7 +19,7 @@ const test = require(`ava`);
 
 const Storage = require('@google-cloud/storage');
 const storage = new Storage();
-const bucketName = 'some-bucket-name';
+const bucketName = 'please-delete-this';
 
 test(`can access GCP`, async (t) => {
   await storage

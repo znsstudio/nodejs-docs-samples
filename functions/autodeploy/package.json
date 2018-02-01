@@ -28,6 +28,6 @@
     "requiresProjectId": true
   },
   "resolutions": {
-    "google-auto-auth": "^0.9.2"
+    "google-auto-auth": "0.9.2"
   }
 }
